@@ -1,4 +1,4 @@
-// Version: 1.1
+// Version: 1.2
 
 const RESET = "\x1b[0m";
 
@@ -8,12 +8,11 @@ class Logger {
     }
 
     types = {
-        // remove the whitespace at the start of the string
         log:        '\x1b[36m',
-        success:    '\x1b[32m\x1b[1m',
-        error:      '\x1b[31m\x1b[1m',
-        warn:       '\x1b[33m\x1b[1m',
-        info:       '\x1b[34m\x1b[1m',
+        success:    '\x1b[32m',
+        error:      '\x1b[31m',
+        warn:       '\x1b[33m',
+        info:       '\x1b[34m',
         
         // log:        '\x1b[36m\x1b[1m',
         // success:    '\x1b[32m\x1b[1m',
@@ -33,23 +32,23 @@ class Logger {
     }
 
     log(...args: any[]) {
-        console.log(`${this.types.log}${this.logstart("log")}`, RESET,...args);
+        console.log(`${this.logstart("log")}`, RESET,...args);
     }
 
     success(...args: any[]) {
-        console.log(`${this.types.success}${this.logstart("success")}`, RESET,...args);
+        console.log(`${this.logstart("success")}`, RESET,...args);
     }
 
     error(...args: any[]) {
-        console.error(`${this.types.error}${this.logstart("error")}`, RESET,...args);
+        console.error(`${this.logstart("error")}`, RESET,...args);
     }
 
     warn(...args: any[]) {
-        console.warn(`${this.types.warn}${this.logstart("warn")}`, RESET,...args);
+        console.warn(`${this.logstart("warn")}`, RESET,...args);
     }
 
     info(...args: any[]) {
-        console.info(`${this.types.info}${this.logstart("info")}`, RESET,...args);
+        console.info(`${this.logstart("info")}`, RESET,...args);
     }
 }
 
