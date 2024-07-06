@@ -1,16 +1,25 @@
+// Version: 1.1
+
 const RESET = "\x1b[0m";
 
 class Logger {
     constructor() {
-        console.log(this.types.log, `${this.logstart("log")}`, RESET, "Logger initialized!");
+        console.log(`${this.logstart("log")}`, RESET, "Logger initialized!");
     }
 
     types = {
-        log: '\x1b[36m\x1b[1m',
-        success: '\x1b[32m\x1b[1m',
-        error: '\x1b[31m\x1b[1m',
-        warn: '\x1b[33m\x1b[1m',
-        info: '\x1b[34m\x1b[1m',
+        // remove the whitespace at the start of the string
+        log:        '\x1b[36m',
+        success:    '\x1b[32m\x1b[1m',
+        error:      '\x1b[31m\x1b[1m',
+        warn:       '\x1b[33m\x1b[1m',
+        info:       '\x1b[34m\x1b[1m',
+        
+        // log:        '\x1b[36m\x1b[1m',
+        // success:    '\x1b[32m\x1b[1m',
+        // error:      '\x1b[31m\x1b[1m',
+        // warn:       '\x1b[33m\x1b[1m',
+        // info:       '\x1b[34m\x1b[1m',
     };
 
     currentTime() {
@@ -18,29 +27,29 @@ class Logger {
         return `[${date}]`;
     }
 
-    logstart(type: string) {
-        return `${this.currentTime()} [${type.toUpperCase()}]`;
+    logstart(type: keyof typeof this.types) {
+        return `${this.types[type]}${this.currentTime()} [${type.toUpperCase()}]`;
         // console.groupCollapsed(`%c${DEBUG_PREFIX} ${this.currentTime()} [${type}]`, this.types[type]);
     }
 
     log(...args: any[]) {
-        console.log(this.types.log, `${this.logstart("log")}`, RESET,...args);
+        console.log(`${this.types.log}${this.logstart("log")}`, RESET,...args);
     }
 
     success(...args: any[]) {
-        console.log(this.types.success, `${this.logstart("success")}`, RESET,...args);
+        console.log(`${this.types.success}${this.logstart("success")}`, RESET,...args);
     }
 
     error(...args: any[]) {
-        console.error(this.types.error, `${this.logstart("error")}`, RESET,...args);
+        console.error(`${this.types.error}${this.logstart("error")}`, RESET,...args);
     }
 
     warn(...args: any[]) {
-        console.warn(this.types.warn, `${this.logstart("warn")}`, RESET,...args);
+        console.warn(`${this.types.warn}${this.logstart("warn")}`, RESET,...args);
     }
 
     info(...args: any[]) {
-        console.info(this.types.info, `${this.logstart("info")}`, RESET,...args);
+        console.info(`${this.types.info}${this.logstart("info")}`, RESET,...args);
     }
 }
 
